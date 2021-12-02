@@ -14,15 +14,18 @@ const Input = () => {
 
   //functions
   const addTodo = () => {
-    console.log(`Adding ${input}`);
-
-    dispatch(
-      saveTodo({
-        item: input,
-        done: false,
-        id: Date.now(),
-      })
-    );
+    if (!input) {
+        
+    } else {
+      dispatch(
+        saveTodo({
+          item: input,
+          done: false,
+          id: Date.now(),
+        })
+      );
+      setInput("")
+    }
   };
 
   const handleChange = (e) => {
@@ -31,10 +34,14 @@ const Input = () => {
   };
 
   return (
-    <div className="input">
-      <input value={input} onChange={handleChange} type="text" />
-      <button onClick={addTodo}>Add</button>
-    </div>
+    <>
+      <form action="#" className="input">
+        <input required value={input} onChange={handleChange} type="text" />
+        <button type="submit" onClick={addTodo}>
+          Add
+        </button>
+      </form>
+    </>
   );
 };
 
